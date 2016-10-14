@@ -18,13 +18,35 @@ imageDatas = (function getImageURL(imageDatasArray){
 	return imageDatasArray;
 })(imageDatas);
 
+var ImgFigure = React.createClass({
+	render: function(){
+		return (
+			<figure className="img_figure">
+				<img src={this.props.data.imageURL} alt={this.props.data.title} />
+				<figcaption>
+					<h2 className="img_title">{this.props.data.title}</h2>
+				</figcaption>
+			</figure>
+		);
+	}
+});
+
 class GalleryByReact extends React.Component {
   render() {
+  	var controllerUnits = [],
+  		imgFigures = [];
+
+  	imageDatas.forEach(function(value){
+  		imgFigures.push(<ImgFigure data={value} />);
+  	});
+
     return (
       <section className="stage">
       	<section className="img_sec">
+      		{imgFigures}
       	</section>
-      	<nav class="controller_nav">
+      	<nav className="controller_nav">
+      		{controllerUnits}
       	</nav>
       </section>
     );
